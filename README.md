@@ -1,12 +1,12 @@
-# Vegex
+# miniprox
 > ——基于微信小程序的状态管理容器
-`version 1.0.1 Beta`
+`version 0.0.3 Beta`
 ---
 
 #### 介绍：
-##### 什么是Vegex？
-Vegex是基于微信小程序的状态管理容器，灵感来源于react的redux状态管理，同时不改变微信小程序的最底层工作原理，保证项目的平滑过渡，即插即用。目前在华师心院被试平台的微信小程序端中测试使用。
-##### Vegex能做什么？
+##### 什么是miniprox？
+miniprox是基于微信小程序的状态管理容器，灵感来源于react的redux状态管理，同时不改变微信小程序的最底层工作原理，保证项目的平滑过渡，即插即用。目前在华师心院被试平台的微信小程序端中测试使用。
+##### miniprox能做什么？
 - 数据统一管理：实现页面共享数据通过唯一的数据管理对象进行管理
 - 发布订阅者模式：从原生的微信小程序页面的被动更新数据变为主动更新
 - 提升用户UI体验：用户可在第一时间看到数据的更新结果。
@@ -17,12 +17,12 @@ Vegex是基于微信小程序的状态管理容器，灵感来源于react的redu
 我们开发是基于微信小程序原生提供的“暗示”：`app.js`中`App`对象中的`globalData`属性，所以请不要除掉`globalData`对象。初始化方式：
 ```javascript
 //app.js
-const _ = require("../../Server/Listener/initListen");
+const _ = require("miniprox/Listener/initListen");
 _.initStore({
     //...write the object which you want to init...
 },  this)
 ```
-初始化数据的时候只需要在`iniStore`方法中编写所需管理的初始属性即可。其中`this`参数代表指向App对象的指针。
+初始化数据的时候只需要在`initStore`方法中编写所需管理的初始属性即可。其中`this`参数代表指向App对象的指针。
 
 > 为了便于开发，我们希望每一个初始设置的属性都能拥有一个真值
 
@@ -31,7 +31,7 @@ _.initStore({
 ###### addSubscribe()
 ```javascript
 //a  javascript file
-import {addSubscribe} from '../../Server/Lister/addListen';
+import {addSubscribe} from 'miniprox/Listener/addListen';
 
 let that = this;
 addSubscribe({
@@ -49,7 +49,7 @@ addSubscribe({
 
 ###### getSubscribe()
 ```javascript
-import {getSubscribe} from '../../Server/Lister/addListen';
+import {getSubscribe} from 'miniprox/Lister/addListen';
 
 let that = this;
 getSubscribe({
@@ -73,7 +73,7 @@ getSubscribe({
 ###### appSetStore()
 ```javascript
 //app.js
-const _ = require('../../Server/Listener/initListen');
+const _ = require('miniprox/Listener/initListen');
 
 let that = this;
 _.appSetStore(
@@ -88,7 +88,7 @@ _.appSetStore(
 ###### setSubscribe()
 ```javascript
 // some page file
-import {setSubscribe} from '../../Server/Listener/addListen';
+import {setSubscribe} from 'miniprox/Listener/addListen';
 
 setSubscribe(
     type: 'SOME_ACTION',
